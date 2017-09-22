@@ -14,13 +14,15 @@ for dir_ in file_list:
 		if b=='.h' or b=='.hpp' or b=='.cpp' or b=='.cc':
 			rf = open(path_name)
 			temp_file = path_name+".temp"
-			wf = open(temp_file)
-			wf.write("#include <iostream>")
+			wf = open(temp_file, 'w+')
+			wf.write("#include <iostream>\n")
 			for line in rf:
 				wf.write(line)
 				selectObj = pattern_select.search(line)
 				if selectObj:
-					wf.write("\tstd::cout<<__file__<<\" , \"<<__line__<<std::endl;")
+					wf.write("  std::cout<<__file__<<\" , \"<<__line__<<std::endl;\n")
 					print line
 			rf.close()
 			wf.close()
+			os.remove(path_name)
+			os.rename(temp_file, path_name)
