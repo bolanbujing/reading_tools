@@ -22,7 +22,7 @@ def reading (current_path):
 					selectObj = pattern_select.search(line)
 					excludeObj = pattern_exclude.search(line)
 					if selectObj and not excludeObj:
-						wf.write("  std::cout<<__FILE__<<\" , \"<<__LINE__<<std::endl;\n")
+						wf.write("  std::cout<<__FILE__<<\" ,\"<<__LINE__<<\", \"<<__func__<<std::endl;\n")
 						print line
 				rf.close()
 				wf.close()
